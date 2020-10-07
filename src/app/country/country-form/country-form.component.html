@@ -1,0 +1,201 @@
+<form nz-form [formGroup]="countryForm">
+    <nz-divider nzText="Country Data Entry" nzOrientation="left"></nz-divider>
+    <div nz-row [nzGutter]="8">
+        <div nz-col class="gutter-row" nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your name!">
+                    <nz-input-group>
+                        <input formControlName="name" nz-input placeholder="name" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+
+        <div nz-col class="gutter-row" nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your alpha2Code!">
+                    <nz-input-group>
+                        <input formControlName="alpha2Code" nz-input placeholder="alpha2Code" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+
+        <div nz-col class="gutter-row" nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your alpha3Code!">
+                    <nz-input-group>
+                        <input formControlName="alpha3Code" nz-input placeholder="alpha3Code" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+
+        <div nz-col class="gutter-row" nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your capital!">
+                    <nz-input-group>
+                        <input formControlName="capital" nz-input placeholder="capital" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+
+    <div nz-row [nzGutter]="8">
+        <div nz-col class="gutter-row" nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your altSpellings!">
+
+                    <nz-select formControlName="altSpellings" nzMode="tags" [nzTokenSeparators]="[',']" nzPlaceHolder="altSpellings">
+                        <nz-option *ngFor="let option of altOptions" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+                    </nz-select>
+
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+
+        <div nz-col class="gutter-row" nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your region!">
+                    <nz-input-group>
+                        <input formControlName="region" nz-input placeholder="region" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+
+        <div nz-col class="gutter-row" nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your subregion!">
+                    <nz-input-group>
+                        <input formControlName="subregion" nz-input placeholder="subregion" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col class="gutter-row" nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your population!">
+                    <nz-input-group>
+                        <input formControlName="population" nz-input placeholder="population" type="number" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+
+    <div nz-row [nzGutter]="8">
+        <div nz-col class="gutter-row" nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+            <nz-form-item>
+                <nz-form-control [nzErrorTip]="latErrorTpl">
+                    <nz-input-group>
+                        <!-- <input formControlName="lat" nz-input placeholder="latitude" /> -->
+                        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                            <input type="text" formControlName="lat" [(ngModel)]="lat" nz-input placeholder="latitude" />
+                        </nz-input-group>
+                        <ng-template #suffixIconButton>
+                            <button nz-button nzType="primary" (click)="onMapClick()" nzSearch><i nz-icon nzType="search"></i></button>
+                        </ng-template>
+                        <ng-template #latErrorTpl let-control>
+                            <ng-container *ngIf="hasError('lat','required')">
+                                Please input your latitude !
+                            </ng-container>
+                            <ng-container *ngIf="hasError('lat','max')">
+                                The max of latitude is not correct!
+                            </ng-container>
+                            <ng-container *ngIf="hasError('lat','min')">
+                                The min of latitude is not correct!
+                            </ng-container>
+                            <ng-container *ngIf="hasError('lat','pattern')">
+                                please insert valid number for latitude!
+                            </ng-container>
+                        </ng-template>
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+
+        <div nz-col class="gutter-row" nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+            <nz-form-item>
+                <nz-form-control [nzErrorTip]="lonErrorTpl">
+                    <nz-input-group>
+                        <!-- <input formControlName="lon" nz-input placeholder="longitude" /> -->
+                        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                            <input formControlName="lon" [(ngModel)]="lng" nz-input placeholder="longitude" />
+                        </nz-input-group>
+                        <ng-template #suffixIconButton>
+                            <button nz-button nzType="primary" (click)="onMapClick()" nzSearch><i nz-icon nzType="search"></i></button>
+                        </ng-template>
+                        <ng-template #lonErrorTpl let-control>
+                            <ng-container *ngIf="hasError('lon','required')">
+                                Please input your longitude !
+                            </ng-container>
+                            <ng-container *ngIf="hasError('lon','max')">
+                                The max of longitude is not correct!
+                            </ng-container>
+                            <ng-container *ngIf="hasError('lon','min')">
+                                The min of longitude is not correct!
+                            </ng-container>
+                            <ng-container *ngIf="hasError('lon','pattern')">
+                                please insert valid number for longitude!
+                            </ng-container>
+                        </ng-template>
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+
+        <div nz-col class="gutter-row" nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your demonym!">
+                    <nz-input-group>
+                        <input formControlName="demonym" nz-input placeholder="demonym" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+
+        <div nz-col class="gutter-row" nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your timezone!">
+                    <ng2-timezone-picker placeholder="Select timezone" showOffset="true" guess="true" (change)="changeTimezone($event)">
+                    </ng2-timezone-picker>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+
+    <div nz-row [nzGutter]="8">
+        <div nz-col class="gutter-row" nzXs="24" nzSm="24" nzMd="12" nzLg="12" nzXl="12">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your nativeName!">
+                    <nz-input-group>
+                        <input formControlName="nativeName" nz-input placeholder="nativeName" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+
+    <div nz-row [nzGutter]="8" nzJustify="center">
+        <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="4" nzXl="4">
+            <nz-form-item>
+                <nz-form-control>
+                    <button nz-button nzType="primary" nzBlock [disabled]="!countryForm.valid" [nzLoading]="isSendingRequest" (click)="submitForm()"><i nz-icon nzType="check"></i>Save</button>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="4" nzXl="4">
+            <nz-form-item>
+                <nz-form-control>
+                    <button class="danger" nz-button nzType="default" nzDanger nzBlock (click)="onCancel()"> <i nz-icon nzType="left"></i> Cancel</button>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+</form>
+
+<nz-modal nzWrapClassName="vertical-center-modal" [(nzVisible)]="isVisibleModal" nzTitle="select Your Location ..." (nzOnCancel)="onCancelMap()" (nzOnOk)="onOkMap()">
+    <app-google-map (latLngChange)='onLatLngChange($event)'></app-google-map>
+</nz-modal>

@@ -1,0 +1,8 @@
+<input #lat type="text" [(ngModel)]="latitude" nz-input placeholder="latitude" class="lat" (ngModelChange)="onLatChange($event)" />
+<input #lng [(ngModel)]="longitude" nz-input placeholder="longitude" class="lng" (ngModelChange)="onLngChange($event)" />
+<button nz-button nzType="primary" nzShape="circle" (click)="onMapClick()" nzSearch><i nz-icon nzType="search"></i></button>
+
+
+<nz-modal nzWrapClassName="vertical-center-modal" [(nzVisible)]="isVisibleModal" nzTitle="select Your Location ..." (nzOnCancel)="onCancelMap()" (nzOnOk)="onOkMap()">
+    <app-google-map [latitude]="latitude" [longitude]="longitude" (latLngChange)='onLatLngChange($event)'></app-google-map>
+</nz-modal>

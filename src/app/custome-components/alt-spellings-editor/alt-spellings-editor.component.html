@@ -1,0 +1,3 @@
+<nz-select nzMode="tags" [nzTokenSeparators]="[',']" nzPlaceHolder="altSpellings" [(ngModel)]="selectedValues">
+    <nz-option *ngFor="let option of altOptions" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+</nz-select>

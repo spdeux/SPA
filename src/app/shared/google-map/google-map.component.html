@@ -1,0 +1,6 @@
+<agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="mapClicked($event)">
+    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+</agm-map>
+
+<div>Latitude: {{latitude}}</div>
+<div>Longitude: {{longitude}}</div>

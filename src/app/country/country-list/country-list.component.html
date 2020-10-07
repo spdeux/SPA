@@ -1,0 +1,25 @@
+<div nz-row [nzGutter]="8">
+    <div nz-col>
+        <nz-page-header [nzGhost]="false">
+            <nz-page-header-title>Country List</nz-page-header-title>
+            <nz-page-header-extra>
+
+                <button nz-button (click)="getCountries()">Refresh</button>
+                <button nz-button routerLink="/country" nzType="primary">+</button>
+            </nz-page-header-extra>
+        </nz-page-header>
+    </div>
+
+
+
+    <div nz-col class="gutter-row" nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24">
+        <ag-grid-angular style="width: 100%; height: 55vh;" class="ag-theme-alpine" [gridOptions]="gridOptions" (gridReady)="onGridReady($event)" (selectionChanged)="onSelectionChanged($event)" (rowValueChanged)="onRowValueChanged($event)" (cellValueChanged)="onCellValueChanged($event)">
+        </ag-grid-angular>
+    </div>
+</div>
+
+<div id="loader-wrapper" *ngIf="isSendingRequest">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+</div>
